@@ -11,7 +11,8 @@ public class Player : MonoBehaviour {
     [SerializeField] private LayerMask jumpableGround;
     [SerializeField] private float fallMultiplier =3f;
     [SerializeField] private float lowJumpMultiplier = 2f;
-    private bool grounded;
+    [SerializeField] float jumpTime;
+    private float jumpTimer;
 
 
     // Start is called before the first frame update
@@ -25,9 +26,12 @@ public class Player : MonoBehaviour {
         xMove = Input.GetAxisRaw("Horizontal");
         spacePressed = Input.GetKeyDown(KeyCode.Space);
         if (spacePressed && IsGrounded()) {
-            rb2d.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+            rb2d.velocity = Vector2.up * jumpSpeed;
+            jumpTimer = jumpTime; 
         }
-        if (rb2d.velocity.y < 0) {
+        Debug.Log("JumpTimer remaining: " + jumpTimer);
+        if (jumpTimer >0)jumpTimer -= Time.deltaTime; 
+        if (rb2d.velocity.y < 0 || jumpTimer <= 0) {
             rb2d.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier-1) *Time.deltaTime;
         } else if (rb2d.velocity.y > 0 && !Input.GetKey(KeyCode.Space)) {
             rb2d.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
