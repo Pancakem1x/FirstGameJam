@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private float lowJumpMultiplier = 2f;
     [SerializeField] float jumpTime;
     private float jumpTimer;
+    public Animator animator;
 
 
     // Start is called before the first frame update
@@ -24,10 +25,22 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         xMove = Input.GetAxisRaw("Horizontal");
+        animator.SetFloat("Speed", Mathf.Abs(xMove));
         spacePressed = Input.GetKeyDown(KeyCode.Space);
+        if (IsGrounded() && jumpTimer <0)
+        {
+            animator.SetBool("IsJumping", false);
+        }
         if (spacePressed && IsGrounded()) {
             rb2d.velocity = Vector2.up * jumpSpeed;
-            jumpTimer = jumpTime; 
+            jumpTimer = jumpTime;
+            if (jumpTimer >0)
+            {
+                animator.SetBool("IsJumping", true);
+            }
+
+
+
         }
         Debug.Log("JumpTimer remaining: " + jumpTimer);
         if (jumpTimer >0)jumpTimer -= Time.deltaTime; 
@@ -36,6 +49,7 @@ public class Player : MonoBehaviour {
         } else if (rb2d.velocity.y > 0 && !Input.GetKey(KeyCode.Space)) {
             rb2d.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
+
 
     }
 
@@ -58,6 +72,7 @@ public class Player : MonoBehaviour {
     private bool IsGrounded() {
         //  Debug.Log("IsGrounded: " + Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, jumpDetection, jumpableGround));
         return Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, jumpDetection, jumpableGround);
+        
 
     }
 
