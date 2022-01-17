@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 351364854}
   - component: {fileID: 351364853}
   - component: {fileID: 351364855}
+  - component: {fileID: 351364856}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -830,25 +831,33 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!95 &351364855
-Animator:
-  serializedVersion: 3
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02691b83dd8d2ba40a2cc80e4f021063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  jumpSpeed: 20
+  jumpableGround:
+    serializedVersion: 2
+    m_Bits: 64
+  fallMultiplier: 10
+  lowJumpMultiplier: 10
+  jumpTime: 0.25
+--- !u!114 &351364856
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351364850}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: eb7a9e97b306c864e99651cdc7396ef6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e7ef92746facd4b87f0473d71305d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xMoveEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,7 +1558,7 @@ GameObject:
   - component: {fileID: 1401812092}
   - component: {fileID: 1401812095}
   - component: {fileID: 1401812094}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
