@@ -5,7 +5,7 @@
 [Bb]uilds/
 **/[L1]ogs/
 Assets/AssetStoreTools*
-
+*.log
 # Visual Studio cache directory
 .vs/
 
