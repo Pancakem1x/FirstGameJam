@@ -14,6 +14,7 @@ public class PlayerEvents : MonoBehaviour
     {
         xMove = Input.GetAxisRaw("Horizontal");
         jumpAttempt = Input.GetKeyDown(KeyCode.Space);
+      
     }
 
     private void FixedUpdate() {
