@@ -42,7 +42,11 @@ public class Player : MonoBehaviour {
 
 
         }
-        Debug.Log("JumpTimer remaining: " + jumpTimer);
+      
+        
+        // Debug.Log("JumpTimer remaining: " + jumpTimer);
+
+        //handling maximum jump time, fall speed, and short jump mods
         if (jumpTimer >0)jumpTimer -= Time.deltaTime; 
         if (rb2d.velocity.y < 0 || jumpTimer <= 0) {
             rb2d.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier-1) *Time.deltaTime;
@@ -59,7 +63,7 @@ public class Player : MonoBehaviour {
     }
 
 
-    //Handles horizontal movement for the player class. Uses player input to change direction and jump
+    //Handles horizontal movement for the player class. Uses player input to change direction 
     private void HorizontalMovement() {
         // Debug.Log("Xmove= " + xMove);
         if (Mathf.Abs(xMove) < .001) {
