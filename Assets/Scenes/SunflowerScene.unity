@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 351364856}
   - component: {fileID: 351364857}
   - component: {fileID: 351364858}
+  - component: {fileID: 351364859}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -342,6 +343,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1552222509}
+--- !u!114 &351364859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351364850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1ac4d1235e7a74392b8d34cfca9489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +454,7 @@ GameObject:
   - component: {fileID: 557910700}
   - component: {fileID: 557910704}
   - component: {fileID: 557910705}
+  - component: {fileID: 557910706}
   m_Layer: 0
   m_Name: Sunflower
   m_TagString: Enemy
@@ -594,6 +609,19 @@ MonoBehaviour:
   damage: 1
   health: 10
   firstAttackCooldown: 3
+--- !u!114 &557910706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557910699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1ac4d1235e7a74392b8d34cfca9489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
 --- !u!1 &633563420
 GameObject:
   m_ObjectHideFlags: 0
