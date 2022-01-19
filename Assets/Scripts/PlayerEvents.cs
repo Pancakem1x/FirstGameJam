@@ -5,13 +5,13 @@ using UnityEngine.Events;
 
 public class PlayerEvents : MonoBehaviour
 {
-    [SerializeField] UnityEvent fireEvent; 
+    [SerializeField] UnityEvent<GameObject> fireEvent; 
     [SerializeField] UnityEvent onHitEvent;
 
 
     private void Update() {
         if (Input.GetButtonDown("Fire1")) {
-            fireEvent.Invoke();
+            fireEvent.Invoke(this.gameObject);
         }
     }
 

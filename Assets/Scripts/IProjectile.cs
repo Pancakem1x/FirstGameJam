@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IProjectile
 {
-    void OnObjectSpawn();
+    void OnObjectSpawn(GameObject sender);
 }
