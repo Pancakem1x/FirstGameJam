@@ -5,21 +5,18 @@ using UnityEngine.Events;
 
 public class PlayerEvents : MonoBehaviour
 {
-    [SerializeField] UnityEvent xMoveEvent;
-    private float xMove;
-    private bool jumpAttempt;
+    [SerializeField] UnityEvent fireEvent; 
+    [SerializeField] UnityEvent onHitEvent;
 
 
-    void Update()
-    {
-        xMove = Input.GetAxisRaw("Horizontal");
-        jumpAttempt = Input.GetKeyDown(KeyCode.Space);
-      
+    private void Update() {
+        if (Input.GetButtonDown("Fire1")) {
+            fireEvent.Invoke();
+        }
     }
 
-    private void FixedUpdate() {
-        
-    }
+
+
 
 
 }

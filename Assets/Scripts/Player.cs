@@ -42,7 +42,11 @@ public class Player : MonoBehaviour {
 
 
         }
-        Debug.Log("JumpTimer remaining: " + jumpTimer);
+      
+        
+        // Debug.Log("JumpTimer remaining: " + jumpTimer);
+
+        //handling maximum jump time, fall speed, and short jump mods
         if (jumpTimer >0)jumpTimer -= Time.deltaTime; 
         if (rb2d.velocity.y < 0 || jumpTimer <= 0) {
             rb2d.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier-1) *Time.deltaTime;
@@ -59,21 +63,29 @@ public class Player : MonoBehaviour {
     }
 
 
-    //Handles horizontal movement for the player class. Uses player input to change direction and jump
+    //Handles horizontal movement for the player class. Uses player input to change direction 
+    //rotates player 180* on y axis if switching directions
+
     private void HorizontalMovement() {
         // Debug.Log("Xmove= " + xMove);
         if (Mathf.Abs(xMove) < .001) {
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
             return;
         }
+
+        if (xMove > 0) {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        if (xMove < 0) {
+            transform.rotation = Quaternion.Euler(0, 180, 0); 
+        }
+
         rb2d.velocity = new Vector2(speed * xMove, rb2d.velocity.y);
     }
 
     private bool IsGrounded() {
         //  Debug.Log("IsGrounded: " + Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, jumpDetection, jumpableGround));
         return Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, jumpDetection, jumpableGround);
-        
-
     }
 
 
