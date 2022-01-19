@@ -8,6 +8,7 @@ public class PlayerEvents : MonoBehaviour
     [SerializeField] UnityEvent<GameObject> fireEvent; 
     [SerializeField] UnityEvent onHitEvent;
 
+
     private void Update() {
         if (Input.GetButtonDown("Fire1")) {
             fireEvent.Invoke(this.gameObject);
