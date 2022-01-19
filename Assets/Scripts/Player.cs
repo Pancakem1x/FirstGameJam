@@ -64,20 +64,28 @@ public class Player : MonoBehaviour {
 
 
     //Handles horizontal movement for the player class. Uses player input to change direction 
+    //rotates player 180* on y axis if switching directions
+
     private void HorizontalMovement() {
         // Debug.Log("Xmove= " + xMove);
         if (Mathf.Abs(xMove) < .001) {
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
             return;
         }
+
+        if (xMove > 0) {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        if (xMove < 0) {
+            transform.rotation = Quaternion.Euler(0, 180, 0); 
+        }
+
         rb2d.velocity = new Vector2(speed * xMove, rb2d.velocity.y);
     }
 
     private bool IsGrounded() {
         //  Debug.Log("IsGrounded: " + Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, jumpDetection, jumpableGround));
         return Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, jumpDetection, jumpableGround);
-        
-
     }
 
 
