@@ -7,6 +7,7 @@ public class PlayerWeapon : MonoBehaviour
 
     [SerializeField] private Transform firePoint;
 
+
     private void Awake() {
         
         
@@ -18,8 +19,8 @@ public class PlayerWeapon : MonoBehaviour
         
     }
 
-    public void Fire() {
-        ObjectPooler.Instance.SpawnFromPool("PlayerBullet", firePoint.position, transform.rotation); 
+    public void Fire(GameObject sender) {
+        ObjectPooler.Instance.SpawnFromPool("PlayerBullet", firePoint.position, transform.rotation, sender); 
     }
 
 }

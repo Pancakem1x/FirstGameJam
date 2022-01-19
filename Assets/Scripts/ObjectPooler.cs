@@ -39,7 +39,7 @@ public class ObjectPooler : MonoBehaviour {
     }
 
 
-    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation) {
+    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation, GameObject sender) {
         GameObject objectToSpawn = poolDictionary[tag].Dequeue();
         if (!poolDictionary.ContainsKey(tag)) {
             Debug.LogWarning("Pool with tag " + tag + " doesn't exist");
@@ -48,7 +48,7 @@ public class ObjectPooler : MonoBehaviour {
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.SetPositionAndRotation(position, rotation);
         IProjectile projectile = objectToSpawn.GetComponent<IProjectile>();
-        projectile?.OnObjectSpawn();
+        projectile?.OnObjectSpawn(sender);
         poolDictionary[tag].Enqueue(objectToSpawn);
         return objectToSpawn;
     }

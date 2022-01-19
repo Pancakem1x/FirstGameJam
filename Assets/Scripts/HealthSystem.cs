@@ -18,10 +18,19 @@ public class HealthSystem : MonoBehaviour
     }
 
     public void TakeDamage(int damage) {
-        health -= damage;
+        if (health - damage <= 0) {
+            health = 0;
+            Decease();
+        } else {
+            health -= damage;
+        }
     }
 
     public int GetHealth() {
         return health;
+    }
+
+    public void Decease() {
+        this.gameObject.SetActive(false);
     }
 }

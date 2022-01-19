@@ -7,8 +7,8 @@ public class Boss : MonoBehaviour, IBoss
 
     [SerializeField] private float attackCooldown;
     [SerializeField] private int damage;
-    [SerializeField] private int health;
     [SerializeField] private float firstAttackCooldown = 3f;
+    [SerializeField] private Transform firePoint;
     private float cooldownTimer;
 
     void Awake()
@@ -21,23 +21,17 @@ public class Boss : MonoBehaviour, IBoss
     {
         cooldownTimer -= Time.deltaTime;
         if (cooldownTimer <= 0) {
-            Fire();
+            Fire(this.gameObject);
             cooldownTimer = attackCooldown;
         }
     }
 
     public void OnHit() {
-        health--;
     }
 
-    void Fire() {
-    }
-
-    public int GetHealth() {
-        return health;
-    }
-
-    public void SetHealth(int health) {
-        this.health = health;
+    void Fire(GameObject sender) {
+        ObjectPooler.Instance.SpawnFromPool("EnemyBullet", firePoint.position, transform.rotation, sender);
     }
 }
+
+
