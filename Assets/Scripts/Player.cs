@@ -24,6 +24,7 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        
         xMove = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("Speed", Mathf.Abs(xMove));
         spacePressed = Input.GetKeyDown(KeyCode.Space);
@@ -36,9 +37,9 @@ public class Player : MonoBehaviour {
             jumpTimer = jumpTime;
             if (jumpTimer >0)
             {
-                animator.SetBool("IsJumping", true);
+                animator.SetBool("IsJumping", true);            
             }
-
+        
 
 
         }

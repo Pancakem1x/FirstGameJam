@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-
+    
     [SerializeField] private Transform firePoint;
-
-
+    private Animator animator;
     private void Awake() {
-        
+        animator = GetComponent<Animator>();
         
     }
 
@@ -20,7 +19,8 @@ public class PlayerWeapon : MonoBehaviour
     }
 
     public void Fire(GameObject sender) {
-        ObjectPooler.Instance.SpawnFromPool("PlayerBullet", firePoint.position, transform.rotation, sender); 
+        ObjectPooler.Instance.SpawnFromPool("PlayerBullet", firePoint.position, transform.rotation, sender);
+        animator.SetBool("IsShooting", true);
     }
 
 }
