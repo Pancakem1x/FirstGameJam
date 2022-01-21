@@ -30,6 +30,7 @@ public class Boss : MonoBehaviour, IBoss
     }
 
     void Fire(GameObject sender) {
+      //  int toFireLeft = -1;
         ObjectPooler.Instance.SpawnFromPool("EnemyBullet", firePoint.position, transform.rotation, sender);
     }
 }
