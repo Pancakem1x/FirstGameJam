@@ -7,25 +7,6 @@ public class SproutSpawner : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] Transform[] firePoints; 
 
-    [SerializeField] private float timer = 5f;
-    private float tempTimer;
-    void Start()
-    {
-        tempTimer = timer;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (tempTimer <= 0) {
-            Fire();
-            tempTimer = timer;
-        } else {
-            tempTimer -= Time.deltaTime;
-        }
-
-    }
-
     public void Fire() {
         Debug.Log("spawned sprout attack");
         int numPoints = firePoints.Length;
