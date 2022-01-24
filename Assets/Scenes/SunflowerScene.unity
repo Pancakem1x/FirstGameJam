@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a1ac4d1235e7a74392b8d34cfca9489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,7 +609,7 @@ MonoBehaviour:
   attackCooldown: 3
   damage: 1
   firstAttackCooldown: 3
-  firePoint: {fileID: 1253242187}
+  firePoint: {fileID: 0}
 --- !u!114 &557910706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -622,7 +622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a1ac4d1235e7a74392b8d34cfca9489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 0
 --- !u!1 &633563420
 GameObject:
   m_ObjectHideFlags: 0
