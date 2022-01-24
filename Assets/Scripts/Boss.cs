@@ -1,37 +1,101 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Boss : MonoBehaviour, IBoss
 {
-
     [SerializeField] private float attackCooldown;
+    [SerializeField] private float resetCooldown;
     [SerializeField] private int damage;
-    [SerializeField] private float firstAttackCooldown = 3f;
-    [SerializeField] private Transform firePoint;
+    [SerializeField] private float firstAttackCooldown = .5f;
+    [SerializeField] private Transform[] firePoints;
+    //[SerializeField] private float attackLength = 3f;
+    [SerializeField] UnityEvent fireRoseAttack;
+    [SerializeField] private int maxNumberAttacks = 3;
+    private int timesFired = 0;
+    private HealthSystem healthSystem;
     private float cooldownTimer;
+    private int phase = 1;
+    private int tempPhase;
+    private bool active = false;
 
+    void Start() {
+        healthSystem = GetComponent<HealthSystem>();
+    }
     void Awake()
     {
         cooldownTimer = firstAttackCooldown;
     }
 
-    
-    void Update()
-    {
-        cooldownTimer -= Time.deltaTime;
+
+    void Update() {
+        if (!active) phase = 0;
         if (cooldownTimer <= 0) {
-            Fire(this.gameObject);
+            chooseAttack(phase);
             cooldownTimer = attackCooldown;
+            tempPhase = phase;
+        }
+
+        if (timesFired == maxNumberAttacks) {
+            phase = 3;
+        }
+        cooldownTimer -= Time.deltaTime;
+    }
+
+    void chooseAttack(int phase) {
+        switch (phase) {
+            //case for before fight begins
+            case 0:
+                break;
+
+            //case for first projectile attack
+            case 1:
+                FireAttack1(this.gameObject);
+                break;
+            //case for firing off rose attack
+            case 2:
+                FireAttack2();
+                break;
+
+            //case for in between phase cooldowns
+            case 3:
+                ResetCooldown(); 
+                break;
+
+            default:
+                break;
         }
     }
 
-    public void OnHit() {
+    void FireAttack1(GameObject sender) {
+        timesFired++;
+        Transform finalFirePoint = ChooseFirePoint(firePoints);
+
+        ObjectPooler.Instance.SpawnFromPool("EnemyBullet", finalFirePoint.position, transform.rotation, sender);
     }
 
-    void Fire(GameObject sender) {
-      //  int toFireLeft = -1;
-        ObjectPooler.Instance.SpawnFromPool("EnemyBullet", firePoint.position, transform.rotation, sender);
+    void FireAttack2() {
+        fireRoseAttack.Invoke();
+    }
+
+    Transform ChooseFirePoint(Transform[] firePoints) {
+        int choice = Random.Range(0, firePoints.Length);
+        return firePoints[choice];
+    }
+
+    public void SetPhase (int phase) {
+        this.phase = phase;
+    }
+
+    void ResetCooldown() {
+        phase = tempPhase;
+        timesFired = 0;
+        cooldownTimer = resetCooldown;
+        
+    }
+    public void OnHit() {
+        throw new System.NotImplementedException();
     }
 }
 

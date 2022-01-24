@@ -20,7 +20,9 @@ public class PlayerWeapon : MonoBehaviour
     }
 
     public void Fire(GameObject sender) {
-        ObjectPooler.Instance.SpawnFromPool("PlayerBullet", firePoint.position, transform.rotation, sender); 
+        
+        ObjectPooler.Instance.SpawnFromPool("PlayerBullet", firePoint.position, transform.rotation, sender);
+        Debug.Log("Successfully fired from PlayerWeapon");
     }
 
 }
