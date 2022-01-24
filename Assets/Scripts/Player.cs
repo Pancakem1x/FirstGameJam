@@ -14,6 +14,7 @@ public class Player : MonoBehaviour {
     [SerializeField] float jumpTime;
     private float jumpTimer;
     public Animator animator;
+    AudioSource audioSource;
 
 
 
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour {
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
