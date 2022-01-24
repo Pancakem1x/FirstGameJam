@@ -12,6 +12,7 @@ public class PlayerEvents : MonoBehaviour
     private void Update() {
         if (Input.GetButtonDown("Fire1")) {
             fireEvent.Invoke(this.gameObject);
+            Debug.Log("fired from gameObject:" + this.gameObject.tag);
         }
     }
 
