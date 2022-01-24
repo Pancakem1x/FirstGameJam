@@ -16,14 +16,17 @@ public class Player : MonoBehaviour {
     public Animator animator;
 
 
+
     // Start is called before the first frame update
     void Start() {
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update() {
+        
         xMove = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("Speed", Mathf.Abs(xMove));
         spacePressed = Input.GetKeyDown(KeyCode.Space);
@@ -36,10 +39,8 @@ public class Player : MonoBehaviour {
             jumpTimer = jumpTime;
             if (jumpTimer >0)
             {
-                animator.SetBool("IsJumping", true);
+                animator.SetBool("IsJumping", true);            
             }
-
-
 
         }
   
@@ -85,6 +86,11 @@ public class Player : MonoBehaviour {
         return Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, jumpDetection, jumpableGround);
     }
 
+    private bool AnimShooting()
+    {
+        animator.SetBool("IsShooting", false);
+        return false;
+    }
 
 
 }
