@@ -21,6 +21,7 @@ public class Boss : MonoBehaviour, IBoss
 
     void Start() {
         healthSystem = GetComponent<HealthSystem>();
+        healthSystem.PhaseChange.AddListener(SetPhase);
     }
     void Awake()
     {

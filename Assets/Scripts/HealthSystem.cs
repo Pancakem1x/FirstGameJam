@@ -8,6 +8,8 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private float maxHealth;
     private float health;
     [SerializeField] HealthSlider healthSlider;
+    [SerializeField] public UnityEvent<int> PhaseChange;
+    private int phase;
 
 
     // Start is called before the first frame update
@@ -33,6 +35,12 @@ public class HealthSystem : MonoBehaviour
             Decease();
         } else {
             health -= damage;
+            if (health <= 10 && phase != 2) {
+                phase = 2;
+                PhaseChange.Invoke(phase);
+                Debug.Log("phase should be changed");
+            }
+
         }
         healthSlider.SetHealth(health); 
     }
