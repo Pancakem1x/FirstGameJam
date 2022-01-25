@@ -18,7 +18,6 @@ public class Boss : MonoBehaviour, IBoss
     private float cooldownTimer;
     private int phase = 1;
     private int tempPhase;
-    private bool active = false;
 
     void Start() {
         healthSystem = GetComponent<HealthSystem>();
@@ -26,11 +25,12 @@ public class Boss : MonoBehaviour, IBoss
     void Awake()
     {
         cooldownTimer = firstAttackCooldown;
+        
     }
 
 
     void Update() {
-        if (!active) phase = 0;
+        
         if (cooldownTimer <= 0) {
             chooseAttack(phase);
             cooldownTimer = attackCooldown;
@@ -71,7 +71,6 @@ public class Boss : MonoBehaviour, IBoss
     void FireAttack1(GameObject sender) {
         timesFired++;
         Transform finalFirePoint = ChooseFirePoint(firePoints);
-
         ObjectPooler.Instance.SpawnFromPool("EnemyBullet", finalFirePoint.position, transform.rotation, sender);
     }
 
@@ -95,8 +94,13 @@ public class Boss : MonoBehaviour, IBoss
         
     }
     public void OnHit() {
-        throw new System.NotImplementedException();
     }
+
+    public float GetBossHealth() {
+        return healthSystem.GetHealth();
+    }
+
+
 }
 
 

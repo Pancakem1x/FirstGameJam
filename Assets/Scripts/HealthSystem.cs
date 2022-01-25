@@ -1,16 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HealthSystem : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
     private float health;
-    
+    [SerializeField] HealthSlider healthSlider;
+
+
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
+        healthSlider.SetHealth(maxHealth);
+    }
+
+    private void Awake() {
+        
     }
 
     // Update is called once per frame
@@ -26,6 +34,7 @@ public class HealthSystem : MonoBehaviour
         } else {
             health -= damage;
         }
+        healthSlider.SetHealth(health); 
     }
 
     public float GetHealth() {
