@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour, IProjectile
         
         rb.velocity = transform.right * speed;
         this.sender = sender;
-        Debug.Log("Bullet spawned + moving");
+        //Debug.Log("Bullet spawned + moving");
     }
 
     void Update()
