@@ -18,10 +18,12 @@ public class Boss : MonoBehaviour, IBoss
     private float cooldownTimer;
     private int phase = 1;
     private int tempPhase;
+    private Animator animator;
 
     void Start() {
         healthSystem = GetComponent<HealthSystem>();
         healthSystem.PhaseChange.AddListener(SetPhase);
+        animator = GetComponent<Animator>();
     }
     void Awake()
     {
@@ -52,11 +54,15 @@ public class Boss : MonoBehaviour, IBoss
 
             //case for first projectile attack
             case 1:
+                animator.SetBool("StartRoseAttack", false);
                 FireAttack1(this.gameObject);
+                animator.SetBool("StartAttack", true);
                 break;
             //case for firing off rose attack
             case 2:
+                animator.SetBool("StartAttack", false);
                 FireAttack2();
+                animator.SetBool("StartRoseAttack", true);
                 break;
 
             //case for in between phase cooldowns
