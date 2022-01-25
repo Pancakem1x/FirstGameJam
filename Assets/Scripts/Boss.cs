@@ -54,6 +54,7 @@ public class Boss : MonoBehaviour, IBoss
 
             //case for first projectile attack
             case 1:
+                animator.SetBool("StartRoseAttack", false);
                 FireAttack1(this.gameObject);
                 animator.SetBool("StartAttack", true);
                 break;
