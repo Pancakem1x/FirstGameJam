@@ -5,7 +5,7 @@ using UnityEngine;
 public class SproutSpawner : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] Transform[] firePoints; 
+    [SerializeField] Transform[] firePoints;
 
     public void Fire() {
         Debug.Log("spawned sprout attack");
